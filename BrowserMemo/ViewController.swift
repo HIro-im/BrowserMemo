@@ -84,13 +84,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         // ログ状監視のためのprint(消してもいい)
         print("viewWillAppear browser")
     }
-    
-    func webViewLoad(_ nextUrl: String) {
-        let url = URL(string: nextUrl)!
-        webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
-    }
-    
+        
     // メモを追加するための処理
     @objc func addButtonTapped() {
         let storyboard = self.storyboard!
@@ -119,10 +113,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webView.goForward()
     }
     
-    // webビューをGoogleへ遷移させる処理
+    // GGボタンを押すとwebビューをGoogleへ遷移させる処理
     @objc func ggButtonTapped() {
         // Googleを表示する(initialUrlを渡して処理する)
         webViewLoad(initialUrl)
     }
+
+    // webビューを作る処理
+    func webViewLoad(_ nextUrl: String) {
+        let url = URL(string: nextUrl)!
+        webView.load(URLRequest(url: url))
+        webView.allowsBackForwardNavigationGestures = true
+    }
+
 }
 
