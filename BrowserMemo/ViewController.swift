@@ -96,8 +96,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         next.urlFromWebView = self.currentUrl
         next.previewName = 1
         
-        // 保存ボタンの役割を切り替えるための識別情報を渡す(1は新規保存)
-        next.saveProcess = 1
+        // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(1は新規保存)
+        next.switchProcess = 1
         // 画面遷移を行う
         self.present(next, animated: true, completion: nil)
         

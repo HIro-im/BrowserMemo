@@ -33,12 +33,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5en-zD-PrB">
-                                <rect key="frame" x="72" y="98" width="68" height="19"/>
+                                <rect key="frame" x="72" y="98" width="87" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="ページ名">
                                         <attributes>
-                                            <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             <integer key="NSUnderline" value="1"/>
                                         </attributes>
@@ -74,12 +74,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EG6-mg-Ps3">
-                                <rect key="frame" x="72" y="456" width="34" height="19"/>
+                                <rect key="frame" x="72" y="456" width="43" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="メモ">
                                         <attributes>
-                                            <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             <integer key="NSUnderline" value="1"/>
                                         </attributes>
@@ -105,6 +105,9 @@
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="cancelButtonAction:" destination="vKf-Bt-JOF" eventType="touchUpInside" id="v3M-xt-AN1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75l-iR-9ht">
                                 <rect key="frame" x="237" y="707" width="53" height="31"/>
@@ -115,11 +118,21 @@
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="vKf-Bt-JOF" eventType="touchUpInside" id="4PG-e6-7F8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Jg-r7-0i7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="Jan-We-Ruz" id="iWo-LH-My3"/>
+                        <outlet property="linkUrl" destination="Mj9-Xd-5ca" id="EIS-rv-7w0"/>
+                        <outlet property="memoField" destination="cfm-ce-Yg0" id="HSp-TL-cQu"/>
+                        <outlet property="pageNameField" destination="3LV-dX-YVy" id="Dvx-CN-eH3"/>
+                        <outlet property="saveButton" destination="75l-iR-9ht" id="IQw-Aw-w2h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeA-lB-C3G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
