@@ -119,6 +119,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
 
     }
     
+    // URLリンクタップ時の処理
     @objc func tapURL() {
         // タブバーコントロール内の一番左のビューに遷移するため、[0]のビューを示し、ナビゲーションコントローラとしてキャストする
         if let nextVC = tabBarController?.viewControllers?[0] as? UINavigationController {
@@ -160,7 +161,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
     }
     
 
-    
+    // 取消ボタンタップ時の処理
     @IBAction func cancelButtonAction(_ sender: Any) {
         
         // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
@@ -192,6 +193,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
     }
     
     
+    // 保存ボタンタップ時の処理
     @IBAction func saveButtonAction(_ sender: Any) {
         
         // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
@@ -236,11 +238,40 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
     
     // メモを修正するための処理
     @objc func composeButtonTapped() {
+        // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(2は編集保存)
+        switchProcess = 2
+        
+        // 戻るボタン・編集ボタン・削除ボタンを非表示にする
+        // (統一感を出すために戻るボタンを非表示にする)
+        self.navigationItem.rightBarButtonItems = nil
+        self.navigationItem.hidesBackButton = true
+        
+        // メモ欄を編集可能にする
+        memoField.isEditable = true
+        memoField.isSelectable = true
+        
+        // 取消ボタン・保存ボタンの表示を行う
+        cancelButton.isHidden = false
+        saveButton.isHidden = false
         
     }
     
     // メモを削除するための処理
     @objc func trashButtonTapped() {
+        
+        // 削除したいデータを検索する
+        let deleteData = realm.objects(Memo.self).filter("id == %@", selectedId)
+        
+        do {
+            try realm.write {
+                realm.delete(deleteData)
+            }
+        } catch {
+            print("Error \(error)")
+        }
+        
+        // リストに遷移するための処理(pushだと階層が深くなってしまって、戻るボタンが表示されてしまうため、popを使う)
+        navigationController?.popViewController(animated: true)
         
     }
 
