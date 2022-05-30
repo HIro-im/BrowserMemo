@@ -167,11 +167,11 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
         // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
         switch switchProcess {
         case 1:
-            // webビューからの場合(saveProcess)は、モーダルでの表示のためdismissを使う
+            // webビューからの場合(switchProcess=1)は、モーダルでの表示のためdismissを使う
             self.dismiss(animated: true, completion: nil)
             
         case 2:
-            // 詳細画面の修正ボタンからの場合(saveProcess=2)は、ボタンの表示・非表示や編集可否をもとに戻す(遷移ではないので)
+            // 詳細画面の修正ボタンからの場合(switchProcess=2)は、ボタンの表示・非表示や編集可否をもとに戻す(遷移ではないので)
             
             // 戻るボタン・編集ボタン・削除ボタンを表示する
             self.navigationItem.rightBarButtonItems = [composeButtonItem, trashButtonItem]
@@ -199,7 +199,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
         // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
         switch switchProcess {
         case 1:
-            // webビューからの場合(saveProcess=1)は、新規登録のための保存を行う
+            // webビューからの場合(switchProcess=1)は、新規登録のための保存を行う
             let memo = Memo()
             // オートインクリメントがないので、最新のID(currentId)に1を足して登録する
             memo.id = currentId + 1
@@ -214,7 +214,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
             self.dismiss(animated: true, completion: nil)
             
         case 2:
-            // 詳細画面の修正ボタンからの場合(saveProcess=2)は、修正登録のための保存を行う
+            // 詳細画面の修正ボタンからの場合(switchProcess=2)は、修正登録のための保存を行う
             // 削除したいデータを検索する
             let editData = realm.objects(Memo.self).filter("id == %@", selectedId)
             
