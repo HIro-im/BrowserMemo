@@ -95,10 +95,10 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
             
         case 2:
             // リストからの場合
-            cancelButton.isHidden = false
-            saveButton.isHidden = false
-            memoField.isEditable = true
-            memoField.isSelectable = true
+            cancelButton.isHidden = true
+            saveButton.isHidden = true
+            memoField.isEditable = false
+            memoField.isSelectable = false
             
             // メモを修正・削除するためのボタン
             composeButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(composeButtonTapped))
