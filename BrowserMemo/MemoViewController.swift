@@ -53,6 +53,8 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
         
         // UITextView以外のビューをタップすることで、キーボードが閉じる関数を呼び出せるようにしている
         let tapGR = UIGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        // falseにすることで、UIGestureRecognizerがジェスチャーを受け取った以降のタップ関連のイベントも実施されるようにする
+        // (逆に言うと、デフォルトだとこれがtrueなので、falseにしないと他のタップを認識してくれなくなる)
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         
@@ -135,10 +137,13 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
     
     // キーボードが現れたときのメソッド
     @objc func keyboardWillShow(notification: NSNotification) {
+        // キーボードがメモ欄以外のもので表示された場合は、ここで処理を止めるためreturnを行う(出現時に何でも呼ばれてしまう)
         if !memoField.isFirstResponder {
             return
         }
         
+        // ViewControllerのframeのy座標が0の時(=Viewが上に上がっていない時)は、cgRectVale(キーボードの高さ)を取り出して
+        // その分上にViewを移動させる(iOSは左上の座標が(0,0)で、右方向、下方向に行くとプラスになるから、上方向はマイナスで動かす)
         if self.view.frame.origin.y == 0 {
             if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 self.view.frame.origin.y -= keyboardRect.height
@@ -148,6 +153,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
     
     // キーボードが消えたときのメソッド
     @objc func keyboardWillHide(notification: NSNotification) {
+        // ViewControllerのframeのy座標が0以外の時(=Viewが上に上がっている時)は、y座標を0にしてもとに戻す
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
