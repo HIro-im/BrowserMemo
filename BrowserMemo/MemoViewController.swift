@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class MemoViewController: UIViewController, UITextFieldDelegate{
+class MemoViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var pageNameField: UITextField!
@@ -48,11 +48,11 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
         pageNameField.isEnabled = false
         
         // URLが書いてあるラベルをタップすると処理が行われるようにしている
-        let tapGestureRecognizer = UIGestureRecognizer(target: self, action: #selector(tapURL))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapURL))
         self.linkUrl.addGestureRecognizer(tapGestureRecognizer)
         
         // UITextView以外のビューをタップすることで、キーボードが閉じる関数を呼び出せるようにしている
-        let tapGR = UIGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         // falseにすることで、UIGestureRecognizerがジェスチャーを受け取った以降のタップ関連のイベントも実施されるようにする
         // (逆に言うと、デフォルトだとこれがtrueなので、falseにしないと他のタップを認識してくれなくなる)
         tapGR.cancelsTouchesInView = false
@@ -102,7 +102,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate{
             
             // メモを修正・削除するためのボタン
             composeButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(composeButtonTapped))
-            trashButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(trashButtonTapped))
+            trashButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashButtonTapped))
             self.navigationItem.rightBarButtonItems = [composeButtonItem, trashButtonItem]
             
             // 選択されたデータを取り出すため、IDに合致したデータを参照する
