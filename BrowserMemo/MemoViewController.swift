@@ -26,7 +26,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     var realm = try! Realm()
     
     // 遷移元を識別するための情報
-    var previewName: Int?
+    var previewId: Int?
     
     // webビューから値を受け取るための変数
     var nameFromWebView: String?
@@ -74,7 +74,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
         linkUrl.layer.borderColor = UIColor.white.cgColor
         
         // 遷移元によってテキストに格納する情報及び選択できるボタン等を変更する
-        switch previewName {
+        switch previewId {
         case 1:
             // webビューからの場合
             cancelButton.isHidden = false

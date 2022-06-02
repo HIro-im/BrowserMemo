@@ -166,11 +166,11 @@
             </objects>
             <point key="canvasLocation" x="1937.68115942029" y="79.6875"/>
         </scene>
-        <!--Item-->
+        <!--ブラウザ-->
         <scene sceneID="gN8-Vw-jZV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dog-1S-7qF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="pSl-i5-1r9"/>
+                    <tabBarItem key="tabBarItem" title="ブラウザ" image="rectangle.portrait.fill" catalog="system" id="pSl-i5-1r9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sjz-Zg-ltq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -197,14 +197,77 @@
                     </tabBar>
                     <connections>
                         <segue destination="dog-1S-7qF" kind="relationship" relationship="viewControllers" id="udG-YJ-9ww"/>
+                        <segue destination="CKW-PM-NSL" kind="relationship" relationship="viewControllers" id="sYn-9x-bn0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FtB-zJ-8FV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-635" y="80"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="bmn-tw-kre">
+            <objects>
+                <viewController id="av9-jI-HN0" customClass="TableViewController" customModule="BrowserMemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gsZ-hb-yaK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5fl-AA-935">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Of0-Ky-T0a">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Of0-Ky-T0a" id="tPm-Zs-Jxk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d1R-Br-gMa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5fl-AA-935" firstAttribute="leading" secondItem="d1R-Br-gMa" secondAttribute="leading" id="J4T-dV-Rez"/>
+                            <constraint firstItem="d1R-Br-gMa" firstAttribute="bottom" secondItem="5fl-AA-935" secondAttribute="bottom" id="Jfu-Gb-XXL"/>
+                            <constraint firstItem="d1R-Br-gMa" firstAttribute="trailing" secondItem="5fl-AA-935" secondAttribute="trailing" id="MAh-r9-FvD"/>
+                            <constraint firstItem="5fl-AA-935" firstAttribute="top" secondItem="d1R-Br-gMa" secondAttribute="top" id="x24-rs-Skj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rXy-Nq-8BZ"/>
+                    <connections>
+                        <outlet property="tableView" destination="5fl-AA-935" id="M8j-nX-Yaz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8x-3w-lfe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1978" y="824"/>
+        </scene>
+        <!--メモ-->
+        <scene sceneID="cZd-9v-q7L">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CKW-PM-NSL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="メモ" image="bookmark" catalog="system" id="lyT-xE-18h"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ObX-aA-DQW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="av9-jI-HN0" kind="relationship" relationship="rootViewController" id="0pc-lQ-CBQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hd8-Xg-mH5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061" y="824"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
