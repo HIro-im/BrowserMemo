@@ -32,8 +32,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 初回はGoogleを表示させるようにしてwebビューを起動させる
-        // 引数にa予めGoogleのURLを入れた変数を渡す
+        // 引数に予めGoogleのURLを入れた変数を渡す
         webViewLoad(initialUrl)
+        // KVOが最初は動かないので、GoogleのURLを予め渡しておく
+        currentUrl = initialUrl
         
         // オブザーバーの設定(表示しているURLとページ名を監視して、変化した際に取得できるようにする)
         self.webView?.addObserver(self, forKeyPath: "URL", options: .new, context: nil)

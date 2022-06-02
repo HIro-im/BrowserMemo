@@ -28,9 +28,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Tableviewのデータに関する内容(何行あるか、何を代入するか)に影響する
         tableView.dataSource = self
         
-        // realm内のテーブルを取り出して、メンバ変数への格納と件数を取得する
-        memoObjects()
-        print("全てのデータ(viewDidLoad時)\(objects)")
+//        print("全てのデータ(viewDidLoad時)\(objects)")
 
     }
     
