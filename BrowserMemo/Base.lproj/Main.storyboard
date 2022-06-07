@@ -64,7 +64,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mj9-Xd-5ca">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mj9-Xd-5ca">
                                 <rect key="frame" x="45" y="324.5" width="324" height="30"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
@@ -202,7 +202,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FtB-zJ-8FV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-635" y="80"/>
+            <point key="canvasLocation" x="-668" y="441"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="bmn-tw-kre">
@@ -243,13 +243,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8x-3w-lfe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="824"/>
+            <point key="canvasLocation" x="1061" y="804"/>
         </scene>
-        <!--メモ-->
+        <!--ブックマーク-->
         <scene sceneID="cZd-9v-q7L">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CKW-PM-NSL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="メモ" image="bookmark" catalog="system" id="lyT-xE-18h"/>
+                    <tabBarItem key="tabBarItem" title="ブックマーク" image="bookmark" catalog="system" id="lyT-xE-18h"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ObX-aA-DQW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -262,7 +262,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hd8-Xg-mH5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061" y="824"/>
+            <point key="canvasLocation" x="225" y="804"/>
         </scene>
     </scenes>
     <resources>

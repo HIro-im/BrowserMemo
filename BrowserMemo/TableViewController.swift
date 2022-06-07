@@ -15,7 +15,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let realm = try! Realm()
 
     // IDの個数でセルの個数を確保するための変数
-    var countId: Int = 0
+    var countRecord: Int = 0
     
     // Realm<Memo>からテーブル全体を引き出した内容を確保するための変数
     var objects: Results<Memo>!
@@ -70,12 +70,12 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // realm内のテーブルを取り出して、メンバ変数への格納と件数を取得するメソッド(重複するのでメソッド化)
     func memoObjects() {
         objects = realm.objects(Memo.self)
-        countId = objects.count
+        countRecord = objects.count
     }
     
-    // TableViewに表示するセルの数(ここでは配列の個数を参照している)
+    // TableViewに表示するテーブル行の数(ここでは配列の個数を参照している)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countId
+        return countRecord
     }
     
     // テーブル行分のデータをセルに当てはめる
