@@ -150,7 +150,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         let dt = Date()
 
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = .medium
         dateFormatter.dateStyle = .short
         dateFormatter.locale = Locale(identifier: "ja_JP")
 
