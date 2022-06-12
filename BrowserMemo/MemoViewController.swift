@@ -76,7 +76,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
         // 遷移元によってテキストに格納する情報及び選択できるボタン等を変更する
         switch previewId {
         case 1:
-            // webビューからの場合
+            // webビューからの場合(caseの判定を修正=マジックナンバーを除外する)
             cancelButton.isHidden = false
             saveButton.isHidden = false
             memoField.isEditable = true

@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class ViewController: UIViewController, WKNavigationDelegate {
     
@@ -21,6 +22,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var goBackButtonItem: UIBarButtonItem!
     var goForwardButtonItem: UIBarButtonItem!
     var goGoogleButtonItem: UIBarButtonItem!
+    
+    let dateFormatter = DateFormatter()
+    
+    var realm = try! Realm()
 
     override func loadView() {
         // webビューの定義
@@ -127,6 +132,51 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
     }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("didFinish,currentURL:\(currentUrl)")
+        print("didFinish,currentName:\(currentPageName)")
+
+        // URLが初回ページ(Google)と同じであればrealmには登録しない
+        if currentUrl != initialUrl {
+            historyRegister(currentUrl, currentPageName)
+        }
+
+    }
+    
+    // 履歴への登録処理
+    func historyRegister(_ registerURL: String, _ registerPageName: String) {
+        // realmへの登録関連ロジック(ここから、切り出したい)
+        
+        let dt = Date()
+
+        dateFormatter.timeStyle = .short
+        dateFormatter.dateStyle = .short
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+
+        print(dateFormatter.string(from: dt))
+        print(registerURL)
+        print(registerPageName)
+        
+        let history = WatchDate()
+        
+        history.URL = registerURL
+        history.pageName = registerPageName
+        history.watchDate = dateFormatter.string(from: dt)
+
+        
+        try! realm.write {
+            realm.add(history)
+        }
+        
+        let objects = realm.objects(WatchDate.self).sorted(byKeyPath: "watchDate", ascending: false)
+        print(objects)
+        
+        // realmへの登録関連ロジック(ここまで、切り出したい)
+
+        
+    }
+
 
 }
 
