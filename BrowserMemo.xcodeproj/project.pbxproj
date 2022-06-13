@@ -19,6 +19,7 @@
 		5A5E3E6628480F0F00B9E9FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5E3E6528480F0F00B9E9FF /* TableViewController.swift */; };
 		5A5E3EA828568A7800B9E9FF /* WatchDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5E3EA728568A7800B9E9FF /* WatchDate.swift */; };
 		5A5E3EAA28568D1E00B9E9FF /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5E3EA928568D1E00B9E9FF /* HistoryViewController.swift */; };
+		5A5E3EAE2857EB2200B9E9FF /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5E3EAD2857EB2200B9E9FF /* Parameter.swift */; };
 		5A682760283EDB230013F891 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68275F283EDB230013F891 /* MemoViewController.swift */; };
 		5A6827622843993E0013F891 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827612843993E0013F891 /* Memo.swift */; };
 		BE476D2AF9A737B253E9C0AD /* Pods_BrowserMemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FEC3AC308DB7676E01F5C3 /* Pods_BrowserMemoTests.framework */; };
@@ -64,6 +65,7 @@
 		5A5E3E6528480F0F00B9E9FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5A5E3EA728568A7800B9E9FF /* WatchDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDate.swift; sourceTree = "<group>"; };
 		5A5E3EA928568D1E00B9E9FF /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		5A5E3EAD2857EB2200B9E9FF /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
 		5A68275F283EDB230013F891 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		5A6827612843993E0013F891 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		8901C309BE5DD5D35A3C7895 /* Pods-BrowserMemo-BrowserMemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrowserMemo-BrowserMemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-BrowserMemo-BrowserMemoUITests/Pods-BrowserMemo-BrowserMemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				5A4DF6D5283CFC7800845E85 /* Main.storyboard */,
 				5A5E3EA728568A7800B9E9FF /* WatchDate.swift */,
 				5A5E3E6528480F0F00B9E9FF /* TableViewController.swift */,
+				5A5E3EAD2857EB2200B9E9FF /* Parameter.swift */,
 				5A68275F283EDB230013F891 /* MemoViewController.swift */,
 				5A6827612843993E0013F891 /* Memo.swift */,
 				5A4DF6D8283CFC7F00845E85 /* Assets.xcassets */,
@@ -424,6 +427,7 @@
 				5A682760283EDB230013F891 /* MemoViewController.swift in Sources */,
 				5A5E3E6628480F0F00B9E9FF /* TableViewController.swift in Sources */,
 				5A4DF6D4283CFC7800845E85 /* ViewController.swift in Sources */,
+				5A5E3EAE2857EB2200B9E9FF /* Parameter.swift in Sources */,
 				5A4DF6D0283CFC7800845E85 /* AppDelegate.swift in Sources */,
 				5A5E3EA828568A7800B9E9FF /* WatchDate.swift in Sources */,
 				5A4DF6D2283CFC7800845E85 /* SceneDelegate.swift in Sources */,

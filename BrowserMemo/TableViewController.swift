@@ -100,8 +100,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             // リストからタップされたIDを渡す
             vc.receivedId = objects[indexPath.row].id
             
-            // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(2は修正保存)
-            vc.previewId = 2
+            // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(2は修正保存)マジックナンバー
+            vc.previewId = switchSaveCancel.forEditRecord.rawValue
             
             // 遷移を実行させる(階層をつなげた遷移(=ナビゲーションバーのbackが使える)を実現したいのでpushする
             navigationController?.pushViewController(vc, animated: true)

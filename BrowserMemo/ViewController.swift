@@ -101,10 +101,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
         // 遷移先の変数に引き渡す
         next.nameFromWebView = self.currentPageName
         next.urlFromWebView = self.currentUrl
-        next.previewId = 1
+        // マジックナンバー
+        next.previewId = previewPageID.fromWebView.rawValue
         
-        // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(1は新規保存)
-        next.switchProcess = 1
+        // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(1は新規保存)マジックナンバー
+        next.switchProcess = switchSaveCancel.forCreateRecord.rawValue
         // 画面遷移を行う
         self.present(next, animated: true, completion: nil)
         

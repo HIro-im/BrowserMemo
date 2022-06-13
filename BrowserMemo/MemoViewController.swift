@@ -75,7 +75,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
         
         // 遷移元によってテキストに格納する情報及び選択できるボタン等を変更する
         switch previewId {
-        case 1:
+        case previewPageID.fromWebView.rawValue:
             // webビューからの場合(caseの判定を修正=マジックナンバーを除外する)
             cancelButton.isHidden = false
             saveButton.isHidden = false
@@ -93,7 +93,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
                 currentId = memoData.value(forKeyPath: "@max.id") as! Int
             }
             
-        case 2:
+        case previewPageID.fromBookmarkList.rawValue:
             // リストからの場合
             cancelButton.isHidden = true
             saveButton.isHidden = true
@@ -200,8 +200,8 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
         
         // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
         switch switchProcess {
-        case 1:
-            // webビューからの場合(switchProcess=1)は、新規登録のための保存を行う
+        case switchSaveCancel.forCreateRecord.rawValue:
+            // webビューからの場合(switchProcess=1)は、新規登録のための保存を行う マジックナンバー
             let memo = Memo()
             // オートインクリメントがないので、最新のID(currentId)に1を足して登録する
             memo.id = currentId + 1
@@ -215,8 +215,8 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
             
             self.dismiss(animated: true, completion: nil)
             
-        case 2:
-            // 詳細画面の修正ボタンからの場合(switchProcess=2)は、修正登録のための保存を行う
+        case switchSaveCancel.forEditRecord.rawValue:
+            // 詳細画面の修正ボタンからの場合(switchProcess=2)は、修正登録のための保存を行う　マジックナンバー
             // 削除したいデータを検索する
             let editData = realm.objects(Memo.self).filter("id == %@", selectedId)
             
@@ -241,7 +241,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     // メモを修正するための処理
     @objc func composeButtonTapped() {
         // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(2は編集保存)
-        switchProcess = 2
+        switchProcess = switchSaveCancel.forEditRecord.rawValue
         
         // 戻るボタン・編集ボタン・削除ボタンを非表示にする
         // (統一感を出すために戻るボタンを非表示にする)
