@@ -40,6 +40,11 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     
     // 保存・取消ボタンの処理を切り替えるための変数
     var switchProcess: Int!
+    
+    // お試し変数(画面遷移時にインスタンス化するから参照できるか確認した。パラメータを外出しするより、この方法で書き直したほうが良さそう)
+    let exSwitch = 1
+    let exSwitch2 = 2
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,7 +171,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     // 取消ボタンタップ時の処理
     @IBAction func cancelButtonAction(_ sender: Any) {
         
-        // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
+        // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する(マジックナンバー)
         switch switchProcess {
         case 1:
             // webビューからの場合(switchProcess=1)は、モーダルでの表示のためdismissを使う
