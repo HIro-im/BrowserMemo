@@ -265,20 +265,32 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     
     // メモを削除するための処理
     @objc func trashButtonTapped() {
+        let alert = UIAlertController(title: "ブックマークの削除", message: "このブックマークを削除してもよろしいですか？", preferredStyle: .alert)
         
-        // 削除したいデータを検索する
-        let deleteData = realm.objects(Memo.self).filter("id == %@", selectedId)
+        let cancel = UIAlertAction(title: "キャンセル", style: .default)
         
-        do {
-            try realm.write {
-                realm.delete(deleteData)
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: {(action) -> Void in
+
+            // 削除したいデータを検索する
+            let deleteData = self.realm.objects(Memo.self).filter("id == %@", self.selectedId)
+            
+            do {
+                try self.realm.write {
+                    self.realm.delete(deleteData)
+                }
+            } catch {
+                print("Error \(error)")
             }
-        } catch {
-            print("Error \(error)")
-        }
+            
+            // リストに遷移するための処理(pushだと階層が深くなってしまって、戻るボタンが表示されてしまうため、popを使う)
+            self.navigationController?.popViewController(animated: true)
+
+        })
         
-        // リストに遷移するための処理(pushだと階層が深くなってしまって、戻るボタンが表示されてしまうため、popを使う)
-        navigationController?.popViewController(animated: true)
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        
+        self.present(alert, animated: true, completion: nil)
         
     }
 
