@@ -11,7 +11,7 @@ import RealmSwift
 
 class ViewController: UIViewController, WKNavigationDelegate {
     
-    var webView: WKWebView!
+    @IBOutlet weak var webView: WKWebView!
     var initialUrl: String = "https://www.google.com/"
     var receiveUrl: String!
     
@@ -26,13 +26,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     let dateFormatter = DateFormatter()
     
     var realm = try! Realm()
-
-    override func loadView() {
-        // webビューの定義
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
