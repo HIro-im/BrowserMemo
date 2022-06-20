@@ -27,17 +27,31 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     var realm = try! Realm()
     
+    var progressView = UIProgressView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.navigationDelegate = self
+        
         // 初回はGoogleを表示させるようにしてwebビューを起動させる
         // 引数に予めGoogleのURLを入れた変数を渡す
         webViewLoad(initialUrl)
         // KVOが最初は動かないので、GoogleのURLを予め渡しておく
         currentUrl = initialUrl
+        // NavigationBarの下にUIprogressViewをBar形式で配置
+        self.progressView = UIProgressView(frame: CGRect(x: 0.0, y:(self.navigationController?.navigationBar.frame.size.height)! - 3.0, width: self.view.frame.size.width, height: 3.0))
+        self.progressView.progressViewStyle = .bar
+        self.navigationController?.navigationBar.addSubview(self.progressView)
+
         
         // オブザーバーの設定(表示しているURLとページ名を監視して、変化した際に取得できるようにする)
         self.webView?.addObserver(self, forKeyPath: "URL", options: .new, context: nil)
         self.webView?.addObserver(self, forKeyPath: "title", options: .new, context: nil)
+        
+        // こちらは読み込み状態の監視
+        self.webView?.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        self.webView?.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
         
         // メモを追加するためのボタン
         bookmarksButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
@@ -58,6 +72,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     deinit {
         self.webView?.removeObserver(self, forKeyPath: "URL")
         self.webView?.removeObserver(self, forKeyPath: "title")
+        self.webView?.removeObserver(self, forKeyPath: "estimatedProgress", context: nil)
+        self.webView?.removeObserver(self, forKeyPath: "loading", context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -71,7 +87,40 @@ class ViewController: UIViewController, WKNavigationDelegate {
         if let title = change![NSKeyValueChangeKey.newKey] as? String {
             currentPageName = title
         }
-                
+        
+        if keyPath == "estimatedProgress" {
+            self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
+        }
+        else if keyPath == "loading" {
+            if self.webView.isLoading {
+                self.progressView.setProgress(0.1, animated: true)
+            } else {
+                // 一旦仮置で遅延処理で対応(didFinishで担保できるか試してみる)
+                Thread.sleep(forTimeInterval: 0.4)
+                self.progressView.setProgress(0.0, animated: false)
+            }
+        }
+        
+//        if (keyPath == "estimatedProgress") {
+//            // alphaを1にする(表示)
+//            self.progressView.alpha = 1.0
+//            // estimatedProgressが変更されたときにプログレスバーの値を変更
+//            self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
+//
+//            // estimatedProgressが1.0になったらアニメーションを使って非表示にして、アニメーション完了時0.0をセットする
+//            if (self.webView.estimatedProgress >= 1.0) {
+//                UIView.animate(withDuration: 0.3,
+//                               delay: 0.3,
+//                               options: [.curveEaseOut],
+//                               animations: { [weak self] in
+//                    self?.progressView.alpha = 0.0
+//                }, completion: {
+//                    (finished: Bool) in
+//                    self.progressView.setProgress(0.0,animated: false)
+//                })
+//            }
+//
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +175,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func webViewLoad(_ nextUrl: String) {
         let url = URL(string: nextUrl)!
         webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
