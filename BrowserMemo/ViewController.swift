@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import RealmSwift
+import Dispatch
 
 class ViewController: UIViewController, WKNavigationDelegate {
     
@@ -95,7 +96,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
             if self.webView.isLoading {
                 self.progressView.setProgress(0.1, animated: true)
             } else {
-                // 一旦仮置で遅延処理で対応(didFinishで担保できるか試してみる)
+                // 一旦仮置で遅延処理で対応(didFinish)
                 Thread.sleep(forTimeInterval: 0.4)
                 self.progressView.setProgress(0.0, animated: false)
             }
@@ -121,6 +122,31 @@ class ViewController: UIViewController, WKNavigationDelegate {
 //            }
 //
 //        }
+        
+        //        if keyPath == "estimatedProgress" {
+        //            if self.webView.estimatedProgress >= 1.0 {
+        //                let queue = DispatchQueue.main
+        //                queue.async {
+        //                    self.progressView.setProgress(1.0, animated: true)
+        //                    let queue = DispatchQueue.global(qos: .userInteractive)
+        //                    queue.async {
+        //                        self.progressView.setProgress(0.0, animated: false)
+        //                    }
+        //                }
+        //            } else {
+        //                self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
+        //            }
+        //        }
+        //
+        //        if keyPath == "loading" {
+        //            if self.webView.isLoading {
+        //
+        //            } else {
+        //
+        //            }
+        //        }
+        //
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
