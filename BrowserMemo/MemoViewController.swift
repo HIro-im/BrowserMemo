@@ -25,8 +25,8 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     
     var realm = try! Realm()
     
-    // 遷移元を識別するための情報
-    var previewId: Int?
+    // ブックマークを開いたときの状態を識別する
+    var openMode: Int?
     
     // webビューから値を受け取るための変数
     var nameFromWebView: String?
@@ -41,7 +41,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     // 保存・取消ボタンの処理を切り替えるための変数
     var switchProcess: Int!
     
-    // お試し変数(画面遷移時にインスタンス化するから参照できるか確認した。パラメータを外出しするより、この方法で書き直したほうが良さそう)
+    // お試し変数(画面遷移時にインスタンス化するから参照できるか確認。パラメータを外出しする事もできるし、こちらを参照することでも実装可能)
     let exSwitch = 1
     let exSwitch2 = 2
     
@@ -79,9 +79,9 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
         linkUrl.layer.borderColor = UIColor.white.cgColor
         
         // 遷移元によってテキストに格納する情報及び選択できるボタン等を変更する
-        switch previewId {
-        case previewPageID.fromWebView.rawValue:
-            // webビューからの場合(caseの判定を修正=マジックナンバーを除外する)
+        switch openMode {
+        case switchOpenMode.forCreate.rawValue:
+            // webビューからの場合、編集できるようにする。
             cancelButton.isHidden = false
             saveButton.isHidden = false
             memoField.isEditable = true
@@ -98,8 +98,11 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
                 currentId = memoData.value(forKeyPath: "@max.id") as! Int
             }
             
-        case previewPageID.fromBookmarkList.rawValue:
-            // リストからの場合
+            // 保存・取消ボタンの役割を切り替えるための識別情報を渡す(1は新規保存)
+            switchProcess = switchSaveCancel.forCreateRecord.rawValue
+            
+        case switchOpenMode.forReference.rawValue:
+            // リストからの場合、編集できないようにする。
             cancelButton.isHidden = true
             saveButton.isHidden = true
             memoField.isEditable = false
@@ -171,13 +174,13 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     // 取消ボタンタップ時の処理
     @IBAction func cancelButtonAction(_ sender: Any) {
         
-        // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する(マジックナンバー)
+        // 取消ボタンの処理を変更する
         switch switchProcess {
-        case 1:
+        case switchSaveCancel.forCreateRecord.rawValue:
             // webビューからの場合(switchProcess=1)は、モーダルでの表示のためdismissを使う
             self.dismiss(animated: true, completion: nil)
             
-        case 2:
+        case switchSaveCancel.forEditRecord.rawValue:
             // 詳細画面の修正ボタンからの場合(switchProcess=2)は、ボタンの表示・非表示や編集可否をもとに戻す(遷移ではないので)
             
             // 戻るボタン・編集ボタン・削除ボタンを表示する
@@ -203,7 +206,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     // 保存ボタンタップ時の処理
     @IBAction func saveButtonAction(_ sender: Any) {
         
-        // メモ編集画面にたどり着いた方法によって取消ボタンの処理を変更する
+        // 保存ボタンの処理を変更する
         switch switchProcess {
         case switchSaveCancel.forCreateRecord.rawValue:
             // webビューからの場合(switchProcess=1)は、新規登録のための保存を行う マジックナンバー

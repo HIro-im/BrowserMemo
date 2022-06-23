@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum previewPageID: Int {
-    case fromWebView = 1
-    case fromBookmarkList = 2
+enum switchOpenMode: Int {
+    case forCreate = 1
+    case forReference = 2
 }
 
 enum switchSaveCancel: Int {
